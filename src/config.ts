@@ -1,0 +1,1 @@
+export const AppPath = import.meta.env.VITE_APP_PATH as string;
