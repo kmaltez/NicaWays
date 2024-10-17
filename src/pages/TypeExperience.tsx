@@ -22,15 +22,21 @@ export const TypeExperience = () => {
         Which experience are you looking for?
       </h1>
       <div className="flex flex-col md:flex-row w-2/3 mx-auto gap-4 mt-12 font-raleway text-greenTale text-3xl ">
-        <Link to={"/signup"} className="bg-white rounded-xl py-6 hover:bg-gray-200 flex items-center text-center capitalize">
-          <span className="ml-auto">I want to be a tourist</span>
+        <Link
+          to={"/signup"}
+          className="bg-white rounded-xl py-6 hover:bg-gray-200 flex items-center text-center capitalize w-full"
+        >
+          <span className="ml-auto pl-4">I want to be a tourist</span>
           <img
             src="/Images/Maleta.png"
             alt="maletaLogo"
             className="h-24 mr-auto"
           />
         </Link>
-        <Link to={"/createAccount"} className="bg-white rounded-xl py-6  hover:bg-gray-200 flex items-center text-center capitalize">
+        <Link
+          to={"/createAccount"}
+          className="bg-white rounded-xl py-6  hover:bg-gray-200 flex items-center text-center capitalize w-full"
+        >
           <img
             src="/Images/Avioncito.png"
             alt="avioncitoLogo"
