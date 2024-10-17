@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 interface userData {
   name: string;
@@ -12,9 +13,18 @@ interface SessionState {
   Logout: () => void;
 }
 
-export const useSessionStore = create<SessionState>()((set) => ({
-  session: "Logged Out",
-  userData: null,
-  Login: (userNewData) => set({ session: "Logged In", userData: userNewData }),
-  Logout: () => set({ session: "Logged Out", userData: null }),
-}));
+export const useSessionStore = create<SessionState>()(
+  persist(
+    (set) => ({
+      session: "Logged Out",
+      userData: null,
+      Login: (userNewData) =>
+        set({ session: "Logged In", userData: userNewData }),
+      Logout: () => set({ session: "Logged Out", userData: null }),
+    }),
+    {
+      name: "session-storage",
+      storage: createJSONStorage(() => sessionStorage),
+    }
+  )
+);

@@ -3,6 +3,10 @@ import { FormValidation } from "../hooks/types";
 import { useForm } from "../hooks/useForm";
 import { PublicLayout } from "../layouts/PublicLayout";
 import { useUIStore } from "../stores/UI.store";
+import { Link, useNavigate } from "react-router-dom";
+import { users } from "../data/data";
+import { toast } from "sonner";
+import { useSessionStore } from "../stores/Session.store";
 
 export const Login = () => {
   const formInit = {
@@ -10,29 +14,38 @@ export const Login = () => {
     password: "",
   };
   const formValidations: FormValidation = {
-    email: [(value) => value.length > 0, "Por favor, ingrese su correo."],
-    password: [
-      (value) => value.length > 0,
-      "Por favor, ingrese su contraseña.",
-    ],
+    email: [(value) => value.length > 0, "Email is required."],
+    password: [(value) => value.length > 0, "Your password is required."],
   };
   const { formValues, formValidation, onChange, isFormValid } = useForm(
     formInit,
     formValidations
   );
-  const HidePill = useUIStore((state) => state.HidePill);
+  // const HidePill = useUIStore((state) => state.HidePill);
   const ShowPill = useUIStore((state) => state.ShowPill);
+  const Login = useSessionStore((state) => state.Login);
   const [formSubmited, setFormSubmited] = useState(false);
+  const navigate = useNavigate();
   const { email, password } = formValues;
   const { emailValid, passwordValid } = formValidation;
   const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     setFormSubmited(true);
-    if (isFormValid) {
-      console.log(formValues);
-      setFormSubmited(false);
-      HidePill();
+    if (!isFormValid) return;
+    // Checking useer
+    const userChecked = users.find(
+      (user) => user.email === email && user.password === password
+    );
+    if (!userChecked) {
+      toast.error("There is no user with this credentials");
+      return;
     }
+    toast.success("Welcome!");
+    console.log(formValues);
+    setFormSubmited(false);
+    // Navigate to the next page
+    Login({ name: userChecked.name, email: userChecked.email });
+    navigate("/home");
   };
   useEffect(() => {
     ShowPill();
@@ -55,7 +68,7 @@ export const Login = () => {
             type="text"
             id="email"
             name="email"
-            placeholder="Username"
+            placeholder="Email"
             value={email as string}
             className="rounded-md border border-gray-300 p-1"
             onChange={onChange}
@@ -74,7 +87,10 @@ export const Login = () => {
             className="rounded-md border border-gray-300 p-1"
             onChange={onChange}
           />
-          <a href="#" className="text-xs text-end text-gray-400 underline hover:text-gray-800 ">
+          <a
+            href="#"
+            className="text-xs text-end text-gray-400 underline hover:text-gray-800 "
+          >
             Forgot password?
           </a>
           {passwordValid && formSubmited && (
@@ -87,9 +103,12 @@ export const Login = () => {
         </button>
         <span className="text-center text-sm">Or log in with</span>
         <div className="text-center flex flex-col font-glacial text-gray-500">
-          <a href="#" className="text-xs underline text-gray-400 hover:text-gray-800 ">
-           Don't have an account? Sign up
-          </a>
+          <Link
+            to={"/experience"}
+            className="text-xs underline text-gray-400 hover:text-gray-800 "
+          >
+            Don't have an account? Sign up
+          </Link>
         </div>
       </form>
     </PublicLayout>

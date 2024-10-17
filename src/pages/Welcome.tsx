@@ -26,7 +26,7 @@ export const Welcome = () => {
     <div className="grid grid-rows-2 bg-blueSea font-raleway h-svh animate__animated animate__fadeIn">
       <section className="bg-transparent flex h-full">
         <img
-          src="/Images/LogoPrincipal.png"
+          src="/Images/FondoOscuro.png"
           alt="logoNicaWays"
           className="m-auto h-full"
         />
@@ -34,7 +34,7 @@ export const Welcome = () => {
       <section className="bg-white p-4 flex flex-col h-full rounded-t-3xl">
         <hr className="w-12 bg-gray-800 h-1 rounded-xl mx-auto mt-2" />
         <h1 className="text-4xl text-darkBlack text-center my-auto">Welcome</h1>
-        <button className="border-2 border-darkBlack rounded-2xl p-2 flex max-w-80 self-center w-full  transition-all duration-200 hover:bg-darkBlack hover:text-white">
+        <Link to={"/experience"} className="border-2 border-darkBlack rounded-2xl p-2 flex max-w-80 self-center w-full  transition-all duration-200 hover:bg-darkBlack hover:text-white">
           <div className="m-auto flex">
             <p className="self-center">Get Started</p>
             <svg
@@ -55,7 +55,7 @@ export const Welcome = () => {
               />
             </svg>
           </div>
-        </button>
+        </Link>
         <div className="grid grid-cols-2 gap-2 my-2 mx-auto w-full max-w-80">
           <Link
             to={"/login"}
@@ -64,7 +64,7 @@ export const Welcome = () => {
             Login
           </Link>
           <Link
-            to={"/register"}
+            to={"/experience"}
             className="bg-greenTale text-white rounded-lg py-2 w-full transition-all duration-200 text-center hover:bg-blueSea "
           >
             Register

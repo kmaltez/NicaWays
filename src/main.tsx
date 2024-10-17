@@ -6,11 +6,13 @@ import { BrowserRouter } from "react-router-dom";
 
 import { AppPath } from "./config";
 import { AppRoutes } from "./routes/AppRoutes";
+import { Toaster } from "sonner";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter basename={AppPath}>
       <AppRoutes />
+      <Toaster />
     </BrowserRouter>
   </StrictMode>
 );

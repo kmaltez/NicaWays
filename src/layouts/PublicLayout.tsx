@@ -37,7 +37,7 @@ export const PublicLayout = ({ children }: PublicLayoutProps) => {
         </svg>
       </Link>
       <img
-        src="/Images/LogoPrincipal.png"
+        src="/Images/FondoOscuro.png"
         alt="logoNicaWays"
         className="m-auto h-full "
       />
