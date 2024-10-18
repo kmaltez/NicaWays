@@ -76,6 +76,9 @@ export const CreateTouristGuide = () => {
     languages,
     description,
     linkPresentation,
+    transport,
+    gastronomy,
+    place,
   } = formValues;
   const {
     nameValid,
@@ -121,7 +124,7 @@ export const CreateTouristGuide = () => {
       </h1>
       {/* Labels and fields */}
       <form
-        className="w-2/3 m-auto flex flex-col md:grid md:grid-cols-2 gap-2"
+        className="w-2/3 m-auto flex flex-col md:grid md:grid-cols-2 gap-2 pb-8"
         onSubmit={handleSubmit}
       >
         {CurrentPage === 1 && (
@@ -393,6 +396,92 @@ export const CreateTouristGuide = () => {
                 ? "¿Qué incluye tu experiencia personalizada?"
                 : "What does your personalized experience include?"}
             </span>
+            <div className="flex flex-col w-full m-auto font-glacial">
+              <select
+                name="transport"
+                id="transport"
+                value={transport as string}
+                onChange={(ev) =>
+                  updateForm({ ...formValues, transport: ev.target.value })
+                }
+                className="rounded-md border border-gray-300 p-2"
+              >
+                <option value="" disabled>
+                  {Name === "Español" ? "Transporte" : "Transport"}
+                </option>
+                <option value="1">
+                  {" "}
+                  {Name === "Español" ? "Sedán" : "Sedan"}{" "}
+                </option>
+                <option value="2">
+                  {Name === "Español" ? "Camioneta o microbus" : "Truck or bus"}
+                </option>
+                <option value="3">
+                  {Name === "Español"
+                    ? "No poseo transporte propio"
+                    : "I do not have my own transport"}
+                </option>
+              </select>
+            </div>
+            <div className="flex flex-col w-full m-auto font-glacial">
+              <select
+                name="place"
+                id="place"
+                value={place as string}
+                onChange={(ev) =>
+                  updateForm({ ...formValues, place: ev.target.value })
+                }
+                className="rounded-md border border-gray-300 p-2"
+              >
+                <option value="" disabled>
+                  {Name === "Español" ? "Gastronomía" : "Gastronomy"}
+                </option>
+                <option value="1">
+                  {" "}
+                  {Name === "Español"
+                    ? "Comida local/tradicional"
+                    : "Local/Traditional Food"}{" "}
+                </option>
+                <option value="2">
+                  {Name === "Español" ? "Restaurantes" : "Restaurants"}
+                </option>
+                <option value="3">
+                  {Name === "Español" ? "Ambas" : "Both"}
+                </option>
+              </select>
+            </div>
+            <div className="flex flex-col w-full m-auto font-glacial">
+              <select
+                name="gastronomy"
+                id="gastronomy"
+                value={gastronomy as string}
+                onChange={(ev) =>
+                  updateForm({ ...formValues, gastronomy: ev.target.value })
+                }
+                className="rounded-md border border-gray-300 p-2"
+              >
+                <option value="" disabled>
+                  {Name === "Español" ? "Alojamiento" : "Accommodation"}
+                </option>
+                <option value="1">
+                  {" "}
+                  {Name === "Español" ? "Hoteles" : "Hotels"}{" "}
+                </option>
+                <option value="2">
+                  {Name === "Español" ? "Hostales" : "Hostels"}
+                </option>
+                <option value="3">
+                  {Name === "Español" ? "Ambas" : "Both"}
+                </option>
+              </select>
+            </div>
+            <button
+              className="col-span-2 bg-greenTale py-1 rounded-lg text-white snap-center mx-auto w-full mt-2 max-w-96 "
+              type="button"
+              onClick={() => setCurrentPage(3)}
+            >
+              {Name === "Español" ? "Continuar" : "Continue"}
+            </button>
           </>
         )}
       </form>
