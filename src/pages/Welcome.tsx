@@ -1,11 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Loading } from "../views/Loading";
 import { useUIStore } from "../stores/UI.store";
+import { LenguageSelection } from "../components";
 
 export const Welcome = () => {
   const [ShowLoadingViewEffect, setShowLoadingViewEffect] = useState(false);
   const [ShowLoadingView, setShowLoadingView] = useState(true);
+  const CurrentLenguage = useUIStore((state) => state.Lenguage);
   useEffect(() => {
     const first = setTimeout(() => {
       setShowLoadingViewEffect(true);
@@ -19,80 +21,14 @@ export const Welcome = () => {
     };
   }, []);
 
-  // Logic to open language selection
-  const CurrentLenguage = useUIStore((state) => state.Lenguage);
-  const UpdateLenguage = useUIStore((state) => state.ChangeLenguage);
-  const [OpenLenguage, setOpenLenguage] = useState(false);
-
-  const ref = useRef<HTMLDivElement>(null);
-  const toggleButton = useRef<HTMLButtonElement>(null);
-
-  const changeStateUserSettings = () => {
-    setOpenLenguage(!OpenLenguage);
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      toggleButton.current &&
-      toggleButton.current.contains(event.target as Node)
-    ) {
-      return;
-    }
-    if (ref.current && !ref.current.contains(event.target as Node)) {
-      setOpenLenguage(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
   if (ShowLoadingView) {
     return <Loading hide={ShowLoadingViewEffect} />;
   }
 
   return (
     <div className="grid grid-rows-2 bg-blueSea font-raleway h-svh animate__animated animate__fadeIn ">
-      <section className="absolute right-2 top-2 select-none">
-        <button
-          ref={toggleButton}
-          onClick={changeStateUserSettings}
-          className="w-8 h-8 rounded-full overflow-hidden hover:border"
-        >
-          <img
-            src={`/Images/Flags/${CurrentLenguage.Logo}`}
-            alt="currentLenguage"
-            className="rounded-full h-8 w-8"
-          />
-        </button>
-        <div
-          ref={ref}
-          className={`${
-            OpenLenguage ? " " : " hidden "
-          }fixed top-12 right-2 rounded-lg border items-center py-1 px-2 bg-white border-gray-300 font-glacial text-end `}
-        >
-          <button
-            onClick={() =>
-              UpdateLenguage(
-                CurrentLenguage.Logo === "spain.svg"
-                  ? { Logo: "usa.png", Name: "English" }
-                  : { Logo: "spain.svg", Name: "Español" }
-              )
-            }
-            className="w-8 h-8 rounded-full overflow-hidden hover:border"
-          >
-            <img
-              src={`/Images/Flags/${
-                CurrentLenguage.Logo === "spain.svg" ? "usa.png" : "spain.svg"
-              }`}
-              alt="spain"
-              className="rounded-full h-8 w-8"
-            />
-          </button>
-        </div>
-      </section>
+      {/* LenguageSelection */}
+      <LenguageSelection />
       <section className="bg-transparent flex h-full">
         <img
           src="/Images/FondoOscuro.png"

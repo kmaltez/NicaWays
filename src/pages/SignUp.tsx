@@ -2,19 +2,34 @@ import { Link } from "react-router-dom";
 import { FormValidation } from "../hooks/types";
 import { useForm } from "../hooks/useForm";
 import { useState } from "react";
+import { useUIStore } from "../stores/UI.store";
+import { LenguageSelection } from "../components";
 
 export const SignUp = () => {
+  const { Name } = useUIStore((state) => state.Lenguage);
   const formInit = {
     email: "",
     password: "",
     confirmPassword: "",
   };
   const formValidations: FormValidation = {
-    email: [(value) => value.length > 0, "Email is required"],
-    password: [(value) => value.length > 0, "Please enter your password."],
+    email: [
+      (value) => value.length > 0,
+      Name === "Español"
+        ? "Por favor ingrese su correo electrónico."
+        : "Please enter your email.",
+    ],
+    password: [
+      (value) => value.length > 0,
+      Name === "Español"
+        ? "Por favor ingrese su contraseña."
+        : "Please enter your password.",
+    ],
     confirmPassword: [
-      (value) => value === password,
-      "Passwords do not match.",
+      (value) => value === password && value.length > 0,
+      Name === "Español"
+        ? "Las contraseñas no coinciden."
+        : "Passwords do not match.",
     ],
   };
   const { formValues, formValidation, onChange, isFormValid } = useForm(
@@ -35,6 +50,7 @@ export const SignUp = () => {
   };
   return (
     <div className="bg-blueSea h-svh w-full flex flex-col">
+      <LenguageSelection />
       <Link
         to={"/experience"}
         className="
@@ -55,10 +71,10 @@ export const SignUp = () => {
         onSubmit={handleSubmit}
       >
         <h1 className="font-bold text-4xl capitalize text-center text-white">
-          Sign up
+          {Name === "Español" ? "Regístrate" : "Sign up"}
         </h1>
         <span className="font-glacial text-white w-full text-center">
-          Create new account
+          {Name === "Español" ? "Crea una nueva cuenta" : "Create new account"}
         </span>
         <div className="flex flex-col gap-2 w-2/3 m-auto">
           <div className="flex flex-col w-full m-auto mt-6">
@@ -66,7 +82,7 @@ export const SignUp = () => {
               type="text"
               id="email"
               name="email"
-              placeholder="Email address"
+              placeholder={Name === "Español" ? "Correo electrónico" : "Email"}
               value={email as string}
               className="rounded-md border border-gray-300 p-1"
               onChange={onChange}
@@ -80,7 +96,7 @@ export const SignUp = () => {
               type="password"
               id="password"
               name="password"
-              placeholder="Password"
+              placeholder={Name === "Español" ? "Contraseña" : "Password"}
               value={password as string}
               className="rounded-md border border-gray-300 p-1"
               onChange={onChange}
@@ -94,7 +110,9 @@ export const SignUp = () => {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              placeholder="Confirm password"
+              placeholder={
+                Name === "Español" ? "Confirmar contraseña" : "Confirm password"
+              }
               value={confirmPassword as string}
               className="rounded-md border border-gray-300 p-1"
               onChange={onChange}
@@ -108,10 +126,10 @@ export const SignUp = () => {
         </div>
         <div className="flex flex-col my-6">
           <button className="bg-greenTale text-white rounded-lg py-1 self-center w-1/2 transition-all duration-200 text-center hover:opacity-90">
-            Sign up
+            {Name === "Español" ? "Registrarse" : "Sign up"}
           </button>
           <span className="font-glacial text-white text-center mt-8 mb-4">
-            Or sign up with
+            {Name === "Español" ? "O regístrate con" : "Or sign up with"}
           </span>
           <div className="flex w-full gap-4">
             <button className="bg-white w-full rounded-md py-1 transition-all duration-200 hover:bg-gray-200">
@@ -153,7 +171,9 @@ export const SignUp = () => {
             to={"/login"}
             className="text-gray-400 text-xs text-center mt-24 underline"
           >
-            Already have an account? Log in
+            {Name === "Español"
+              ? "¿Ya tienes una cuenta? Inicia sesión"
+              : "Already have an account? Log in"}
           </Link>
         </div>
       </form>

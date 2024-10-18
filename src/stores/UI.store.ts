@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 type Lenguages = {
-  Logo: "spain.svg" | "usa.png";
+  Logo: "spain.png" | "usa.png";
   Name: "Español" | "English";
 };
 
@@ -17,6 +17,6 @@ export const useUIStore = create<UiState>()((set) => ({
   PillShowing: true,
   ShowPill: () => set({ PillShowing: true }),
   HidePill: () => set({ PillShowing: false }),
-  Lenguage: { Logo: "spain.svg", Name: "Español" },
+  Lenguage: { Logo: "spain.png", Name: "Español" },
   ChangeLenguage: (lenguage) => set({ Lenguage: lenguage }),
 }));

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useUIStore } from "../stores/UI.store";
 import { Link } from "react-router-dom";
+import { LenguageSelection } from "../components";
 
 interface PublicLayoutProps {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ export const PublicLayout = ({ children }: PublicLayoutProps) => {
 
   return (
     <div className="bg-blueSea h-svh w-full grid grid-rows-3">
+      <LenguageSelection />
       <Link
         to={"/welcome"}
         className="

@@ -1,6 +1,13 @@
+import { useUIStore } from "../stores/UI.store";
+
 export const Loading = ({ hide }: { hide: boolean }) => {
+  const { Name } = useUIStore((state) => state.Lenguage);
   return (
-    <div className={`h-svh w-full flex flex-col text-center animate__animated  ${hide && "animate__fadeOut"}`}>
+    <div
+      className={`h-svh w-full flex flex-col text-center animate__animated  ${
+        hide && "animate__fadeOut"
+      }`}
+    >
       <div className="m-auto">
         <img
           src="/Images/LogoPrincipal.png"
@@ -10,7 +17,7 @@ export const Loading = ({ hide }: { hide: boolean }) => {
           className="mx-auto"
         />
         <p className="capitalize font-glacial mt-12 mb-8 text-greenTale">
-          Wait for a second...
+          {Name === "Español" ? "Espera un momento..." : "Wait for a second..."}
         </p>
         <svg
           className="m-auto animate-spin"

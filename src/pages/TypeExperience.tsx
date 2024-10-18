@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import { LenguageSelection } from "../components";
+import { useUIStore } from "../stores/UI.store";
 
 export const TypeExperience = () => {
+  const { Name } = useUIStore((state) => state.Lenguage);
   return (
     <div className="bg-blueSea h-svh w-full flex flex-col">
+      {/* Lenguage Selection */}
+      <LenguageSelection />
       <Link
         to={"/welcome"}
         className="
@@ -19,14 +24,18 @@ export const TypeExperience = () => {
         </svg>
       </Link>
       <h1 className="font-bold text-4xl my-4 capitalize text-center text-white mt-24">
-        Which experience are you looking for?
+        {Name === "Español"
+          ? "¿Qué experiencia buscas?"
+          : "Which experience are you looking for?"}
       </h1>
       <div className="flex flex-col md:flex-row w-2/3 mx-auto gap-4 mt-12 font-raleway text-greenTale text-3xl ">
         <Link
           to={"/signup"}
           className="bg-white rounded-xl py-6 hover:bg-gray-200 flex items-center text-center capitalize w-full"
         >
-          <span className="ml-auto pl-4">I want to be a tourist</span>
+          <span className="ml-auto pl-4">
+            {Name === "Español" ? "Turista" : "Tourist"}
+          </span>
           <img
             src="/Images/Maleta.png"
             alt="maletaLogo"
@@ -42,7 +51,9 @@ export const TypeExperience = () => {
             alt="avioncitoLogo"
             className="h-24 ml-auto"
           />
-          <span className="mr-auto">Tourist guide</span>{" "}
+          <span className="mr-auto">
+            {Name === "Español" ? "Guía turístico" : "Tour guide"}
+          </span>
         </Link>
       </div>
     </div>
