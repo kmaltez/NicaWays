@@ -8,6 +8,7 @@ import {
   Welcome,
 } from "../pages";
 import { useSessionStore } from "../stores/Session.store";
+import { CreateTouristGuide } from "../pages/CreateTouristGuide";
 
 export const AppRoutes = () => {
   const session = useSessionStore((state) => state.session);
@@ -16,6 +17,9 @@ export const AppRoutes = () => {
       {session === "Logged In" && (
         <>
           <Route path="/home" element={<Home />} />
+          <Route path="/experience" element={<TypeExperience />} />
+          <Route path="/createAccount" element={<CreateAccount />} />
+          <Route path="/createTouristGuide" element={<CreateTouristGuide />} />
           <Route path="/*" element={<Navigate to={"/home"} replace />} />
         </>
       )}
@@ -23,8 +27,6 @@ export const AppRoutes = () => {
         <>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/experience" element={<TypeExperience />} />
-          <Route path="/createAccount" element={<CreateAccount />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/*" element={<Navigate to={"/welcome"} replace />} />
         </>

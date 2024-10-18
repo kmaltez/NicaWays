@@ -1,5 +1,5 @@
 import { produce, Draft } from "immer";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import type { FieldValidated, FormValidation, FormValues } from "./types";
 
 export const useForm = (
@@ -25,6 +25,7 @@ export const useForm = (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
 
@@ -104,7 +105,7 @@ export const useForm = (
   };
   const resetForm = () => {
     setFormValues(initialForm);
-  }
+  };
   return {
     formValues,
     isFormValid,
@@ -113,6 +114,6 @@ export const useForm = (
     // onChangeTarjetas,
     onChangeMultiNested,
     updateForm,
-    resetForm
+    resetForm,
   };
 };

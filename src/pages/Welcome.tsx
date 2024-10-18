@@ -47,7 +47,7 @@ export const Welcome = () => {
             Welcome
           </h1>
         )}
-        <Link
+        {/* <Link
           to={"/experience"}
           className="border-2 border-darkBlack rounded-2xl p-2 flex max-w-80 self-center w-full  transition-all duration-200 hover:bg-darkBlack hover:text-white"
         >
@@ -75,7 +75,7 @@ export const Welcome = () => {
               />
             </svg>
           </div>
-        </Link>
+        </Link> */}
         <div className="grid grid-cols-2 gap-2 my-2 mx-auto w-full max-w-80">
           <Link
             to={"/login"}
@@ -84,7 +84,7 @@ export const Welcome = () => {
             {CurrentLenguage.Name === "Español" ? "Iniciar Sesión" : "Login"}
           </Link>
           <Link
-            to={"/experience"}
+            to={"/signup"}
             className="bg-greenTale text-white rounded-lg py-2 w-full transition-all duration-200 text-center hover:bg-blueSea "
           >
             {CurrentLenguage.Name === "Español" ? "Registrarse" : "Register"}

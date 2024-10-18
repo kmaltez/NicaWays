@@ -30,7 +30,7 @@ export const TypeExperience = () => {
       </h1>
       <div className="flex flex-col md:flex-row w-2/3 mx-auto gap-4 mt-12 font-raleway text-greenTale text-3xl ">
         <Link
-          to={"/signup"}
+          to={"/createAccount"}
           className="bg-white rounded-xl py-6 hover:bg-gray-200 flex items-center text-center capitalize w-full"
         >
           <span className="ml-auto pl-4">
@@ -43,7 +43,7 @@ export const TypeExperience = () => {
           />
         </Link>
         <Link
-          to={"/createAccount"}
+          to={"/createTouristGuide"}
           className="bg-white rounded-xl py-6  hover:bg-gray-200 flex items-center text-center capitalize w-full"
         >
           <img

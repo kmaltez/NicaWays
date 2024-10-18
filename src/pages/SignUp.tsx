@@ -52,7 +52,7 @@ export const SignUp = () => {
     <div className="bg-blueSea h-svh w-full flex flex-col">
       <LenguageSelection />
       <Link
-        to={"/experience"}
+        to={"/welcome"}
         className="
       fixed top-4 left-4"
       >
@@ -125,9 +125,12 @@ export const SignUp = () => {
           </div>
         </div>
         <div className="flex flex-col my-6">
-          <button className="bg-greenTale text-white rounded-lg py-1 self-center w-1/2 transition-all duration-200 text-center hover:opacity-90">
+          <Link
+            to={"/experience"}
+            className="bg-greenTale text-white rounded-lg py-1 self-center w-1/2 transition-all duration-200 text-center hover:opacity-90"
+          >
             {Name === "Español" ? "Registrarse" : "Sign up"}
-          </button>
+          </Link>
           <span className="font-glacial text-white text-center mt-8 mb-4">
             {Name === "Español" ? "O regístrate con" : "Or sign up with"}
           </span>

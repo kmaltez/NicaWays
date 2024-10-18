@@ -53,7 +53,7 @@ export const Login = () => {
     setFormSubmited(false);
     // Navigate to the next page
     Login({ name: userChecked.name, email: userChecked.email });
-    navigate("/home");
+    navigate("/experience");
   };
   useEffect(() => {
     ShowPill();
@@ -154,7 +154,7 @@ export const Login = () => {
         </div>
         <div className="text-center flex flex-col font-glacial text-gray-500">
           <Link
-            to={"/experience"}
+            to={"/signup"}
             className="text-xs underline text-gray-400 hover:text-gray-800 "
           >
             {Name === "Español"
