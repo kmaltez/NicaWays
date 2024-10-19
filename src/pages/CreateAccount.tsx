@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import type { FormValidation } from "../hooks/types";
 import { useForm } from "../hooks/useForm";
 import { useState } from "react";
@@ -54,12 +54,14 @@ export const CreateAccount = () => {
     nationalityValid,
     languagesValid,
   } = formValidation;
+  const Navigate = useNavigate();
   const handleSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     setFormSubmited(true);
     if (isFormValid) {
       console.log(formValues);
       setFormSubmited(false);
+      Navigate("/verificationInProgress");
     }
   };
   return (

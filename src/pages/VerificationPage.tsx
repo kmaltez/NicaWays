@@ -14,7 +14,7 @@ export const VerificationPage = () => {
             ? "Nos pondremos en contacto pronto"
             : "We will contact you soon"}
           </span>
-          <img src="" alt="" />
+          <img src="/Images/PalmeraBlanca.png" alt="Palmera blanca" className="w-40 mx-auto" />
         </div>
       </div>
     </div>
