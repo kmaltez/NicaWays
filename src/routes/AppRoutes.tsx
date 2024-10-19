@@ -5,6 +5,7 @@ import {
   Login,
   SignUp,
   TypeExperience,
+  VerificationPage,
   Welcome,
 } from "../pages";
 import { useSessionStore } from "../stores/Session.store";
@@ -20,6 +21,10 @@ export const AppRoutes = () => {
           <Route path="/experience" element={<TypeExperience />} />
           <Route path="/createAccount" element={<CreateAccount />} />
           <Route path="/createTouristGuide" element={<CreateTouristGuide />} />
+          <Route
+            path="/verificationInProgress"
+            element={<VerificationPage />}
+          />
           <Route path="/*" element={<Navigate to={"/home"} replace />} />
         </>
       )}
